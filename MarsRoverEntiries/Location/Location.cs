@@ -1,6 +1,6 @@
 using MarsRover.Interface;
 
-namespace MarsRover.Direction
+namespace MarsRover.Location
 {
     public class Location : ILocation
     {

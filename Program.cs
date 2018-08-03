@@ -20,25 +20,25 @@ namespace MarsRover
                 Console.WriteLine("Invalid input");
             }
 
-            var rightConnerX = int.Parse(rightConnerXAndY[0]);
-            var rightConnerY = int.Parse(rightConnerXAndY[1]);
-            var directionFactory = new RoverDirectionFactory();
+            var upperRightX = int.Parse(rightConnerXAndY[0]);
+            var upperRightY = int.Parse(rightConnerXAndY[1]);
             var commandFactory = new RoverCommandFactory();
-
             string[] LocationAndDirection;
             while ((LocationAndDirection = file.ReadLine()?.Split(" ")) != null)
             {
                 var x = int.Parse(LocationAndDirection[0]);
                 var y = int.Parse(LocationAndDirection[1]);
-                var Location = new Location(x, y);
-                var direction = directionFactory.GetDirection(LocationAndDirection[2]);
-                var rove = new MarsRover.Rover.Rover(direction, Location);
+
+                var rove = new MarsRover.Rover.Rover(LocationAndDirection[2], x, y, upperRightX, upperRightY);
                 var commandString = file.ReadLine();
-                foreach (char commandChar in commandString.ToCharArray())
+
+                Array.ForEach(commandString.ToCharArray(),
+                commandChar =>
                 {
                     var command = commandFactory.GetRoverCommand(rove, commandChar);
                     command.Execute();
-                }
+                });
+
                 Console.WriteLine(rove.ToString());
             }
         }

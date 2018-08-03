@@ -4,19 +4,19 @@ namespace MarsRover.Direction
 {
     public class North : IDirection
     {
-        public IDirection TurnLeft()
+        public void TurnLeft(IRover rover)
         {
-            return new West();
+            rover.SetDirection(new West());
         }
 
-        public IDirection TurnRight()
+        public void TurnRight(IRover rover)
         {
-            return new East();
+            rover.SetDirection(new East());
         }
 
-        public ILocation GetForwardLocation(ILocation Location)
+        public void MoveForward(IRover rover)
         {
-            return Location.MoveYForward();
+            rover.SetLocation(rover.CurrentLocation.MoveYForward());
         }
 
         public override string ToString()

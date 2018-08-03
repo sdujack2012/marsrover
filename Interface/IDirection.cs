@@ -4,8 +4,8 @@ namespace MarsRover.Interface
 {
     public interface IDirection
     {
-        IDirection TurnLeft();
-        IDirection TurnRight();
-        ILocation GetForwardLocation(ILocation Location);
+        void TurnLeft(IRover rover);
+        void TurnRight(IRover rover);
+        void MoveForward(IRover rover);
     }
 }
